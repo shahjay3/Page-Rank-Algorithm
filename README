@@ -1,0 +1,27 @@
+Jay Shah
+PID 800 326 050
+
+In order to to run the Page Rank program provided, all one needs to do is 
+
+1) Make and Input and output directory
+
+2) put the file into the input directory
+
+example for my execution, i put the wiki-micro.txt into my input folder:
+hadoop fs -put /home/cloudera/wiki-micro.txt
+
+3) Compile the Page Rank Program 
+example:
+javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/* /home/cloudera/PageRank.java -d build -Xlint
+
+4) Build the jar for the page rank program
+example: 
+jar -cvf PageRank.jar -C build/ .^C
+
+5) run the hadoop job
+NOTE : To run the job, we need to specify the input path (where your input folder with the input file is), and the output path for the output folder
+example: 
+hadoop jar PageRank.jar org.myorg.PageRank  /user/cloudera/pageRank/input /user/cloudera/pageRank/output
+
+NOTE: You do not need to specify the intermediate folders, as they will be created with program code.
+
